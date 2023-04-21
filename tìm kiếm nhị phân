@@ -1,0 +1,45 @@
+Đề:Cho mảng gồm các phần tử { 2, 3, 4, 10, 40 } nhập vào từ bàn phím. Viết chương trình tìm kiếm giá trị 10. Sử dụng cài đặt tìm kiếm nhị phân để tìm kiếm.
+Code:
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int left, int right, int x) {
+    if (right >= left) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == x) {
+            return mid;
+        }
+
+        if (arr[mid] > x) {
+            return binarySearch(arr, left, mid - 1, x);
+        }
+
+        return binarySearch(arr, mid + 1, right, x);
+    }
+
+    return -1;
+}
+
+int main() {
+    int n, x;
+    cout << "Nhap so phan tu cua mang: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Nhap cac phan tu cua mang: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    x = 10;
+    int result = binarySearch(arr, 0, n - 1, x);
+
+    if (result == -1) {
+        cout << "Khong tim thay " << x << " trong mang." << endl;
+    } else {
+        cout << "Tim thay " << x << " tai vi tri " << result << "." << endl;
+    }
+
+    return 0;
+}
